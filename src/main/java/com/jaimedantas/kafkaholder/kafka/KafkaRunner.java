@@ -1,3 +1,4 @@
+/*
 package com.jaimedantas.kafkaholder.kafka;
 
 import org.apache.avro.generic.GenericRecord;
@@ -65,3 +66,4 @@ public class KafkaRunner {
     }
 
 }
+*/

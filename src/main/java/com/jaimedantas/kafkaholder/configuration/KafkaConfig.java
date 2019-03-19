@@ -1,4 +1,6 @@
+/*
 package com.jaimedantas.kafkaholder.configuration;
+
 
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
@@ -70,4 +72,4 @@ public class KafkaConfig {
         return new KafkaTemplate<>(producerFactory());
     }
 
-}
+}*/

@@ -19,13 +19,12 @@ public class RestController {
     private static final Logger LOGGER = LoggerFactory.getLogger(RestController.class);
 
     @Autowired
-    private DummyProducer sender;
+    private DummyProducer producer;
 
     @CrossOrigin(origins = "*")
     @PostMapping(path="/add")
-    public @ResponseBody String add (Payment payment) {
-        DummyProducer producer = new DummyProducer();
-        producer.send("oi");
+    public @ResponseBody String add (@RequestBody Payment payment) {
+        producer.send(payment);
         return "Saved";
     }
 
