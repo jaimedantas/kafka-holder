@@ -5,6 +5,7 @@ import com.jaimedantas.Payment;
 import com.jaimedantas.Register;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
+import io.confluent.kafka.serializers.subject.TopicRecordNameStrategy;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,6 +36,8 @@ public class DummyConsumerConfig {
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "foo");
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         props.put(KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG, true);
+        props.put(KafkaAvroDeserializerConfig.AUTO_REGISTER_SCHEMAS, true);
+        props.put(KafkaAvroDeserializerConfig.VALUE_SUBJECT_NAME_STRATEGY, TopicRecordNameStrategy.class.getName());
         props.put("schema.registry.url", "http://127.0.0.1:8081");
         return props;
     }
@@ -48,7 +51,8 @@ public class DummyConsumerConfig {
     public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, Register>> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, Register> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
-        factory.getContainerProperties().setPollTimeout(3000);
+        factory.setConcurrency(2);
+        factory.getContainerProperties().setPollTimeout(30000);
         return factory;
     }
 

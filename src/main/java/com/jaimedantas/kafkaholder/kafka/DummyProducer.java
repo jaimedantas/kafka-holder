@@ -16,7 +16,7 @@ public class DummyProducer {
     @Autowired
     private KafkaTemplate<String, Payment> kafkaTemplate;
 
-    private String topic = "brazil";
+    private String topic = "topic-jaime5";
 
     public void send(Payment message){
         LOG.info("sending message='{}' to topic='{}'", message.toString(), topic);

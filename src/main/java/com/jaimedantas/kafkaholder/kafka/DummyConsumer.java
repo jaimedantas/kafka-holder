@@ -12,7 +12,7 @@ public class DummyConsumer {
 
     private static final Logger LOG = LoggerFactory.getLogger(DummyConsumer.class);
 
-    @KafkaListener(topics = "canada")
+    @KafkaListener(topics = "topic-jaime5")
     public void listen(@Payload Register message) {
         LOG.info("received message='{}'", message.toString());
     }
